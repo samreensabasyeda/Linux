@@ -1,0 +1,18 @@
+BASIC COMMAND
+su -> switch user(su - username)
+ls -> list the content in present direcotry 
+pwd -> to print working direcotry
+cd -> change directory 
+cd .. -> go to previous directory
+mkdir -> make diroctory
+mkdir -p -> to create parent directory 
+tree -> chart/tree format for current content  
+lshw -. show harware related info ->
+it lists hardware related information in more detail from the multiple sources (/dev ,/sys, /proc)
+lshw --short
+dmidecode (desktop management iterface decode) -> BIOS/(UEFI)->TASK
+->it's a Linux CL tool that retries the detail hardware information
+ from system checking a manufacturer serial number for example BIOS process memory 
+system manufacturer serial number and other hardware components with the root level hardware access
+man (command)-> command manual.
+info (command)
