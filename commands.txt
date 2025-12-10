@@ -16,3 +16,1041 @@ dmidecode (desktop management iterface decode) -> BIOS/(UEFI)->TASK
 system manufacturer serial number and other hardware components with the root level hardware access
 man (command)-> command manual.
 info (command)
+
+
+
+
+FILE CREATION READ OPRATION 
+touch -> EMPTY FILE
+cat filename -> to show content inside the file =
+cat > filename -> to store info at frist time in empty file
+(if ur using for file with content it will overwrite)
+cat >> filename -> to store info keeping existing info secure 
+cat "error data" 2> filename -> to feed error data (exsiting content  will overwrite))
+cat "error data" 2>> filename -> to feed error data (exsiting content  will not overwrite))
+cat "error data" &> filename -> to feed error data &sucessful data  (exsiting content  will overwrite))
+cat "error data" &>> filename -> to feed error data &sucessful data  (exsiting content  will not overwrite))
+file editors 
+nano -> cp,mv,delate 
+vi -> visual interface editor
+vim -> visual intrface improved
+1) command mode 
+yy -> to copy current line
+nyy -> to copy no of current line
+dd ->to delate current line
+ndd -> to delate no of current line
+dw -> to delate words 
+u -> undo the task 
+p -> paste
+gg ->to drag uppermost position of my code or data
+G -> to drag downmost position of my code or data
+
+2) insert mode 
+i ->to  enter in our insert mode at the present cursor position .
+I -> To insert the information at starting from the line
+a-> When we have to write in between the alphabets 
+A -> To insert at end of the sentence
+r -> To replace single character
+R -> To replace multiple character
+o -> To insert a character below the line
+O -> to insert a character above the line
+
+3) visual mode 
+ v -> to enter visual mode
+
+4) execution mode 
+ 
+: / word  -> to highlight particular word 
+: set nu -> no of line set 
+: w -> save or written 
+:q -> quit (ask permission)
+:q! -> quit forcefully
+:wq! -> to save nd quit forcefully 
+
+
+19 directory's
+main user -root-> adminstator -> managers
+system usrs -> manage system utilies -> team leaders 
+local user -> perform tasks under root and system users -> emploes 
+/ (/Root) -> it's a top level directory in a Linux hierarchy and the other directories  are the subdirectory of this .
+
+/bin->  essential system binaries like (ls,cat,mv) available to all users(users commands)
+
+/sbin -> (system binaries) System Administrator commands like (Fdisk, IP tables,reboot) typically for root user 
+
+/boot -> (boot loader file) -> contain boot related files including the Linux kernel(vmlinuz) and bootable configuration.
+
+/dev -> (device file)-> virtual files representing hardware devices for example (/dev/sda  
+for disk) and (/dev/null)f or null devices -> (Linux react everything as a file including devices).
+
+/etc (configuration file )  system wide configuration files and scripts
+                            (/etc/cd  /etc/passwd ) 
+
+/home -> (user home direcotry)-> contain personal directories of users (/home/omi, /home/manoj)  
+
+/lib(libraries) -> shared libraries required by binaries in /bin and in /sbin
+
+/lib64 (64 -bit libraries ) store 64-bit share libraries on 64-bit system 
+
+/mnt (temporary mount point)-> temporary mounting location
+
+/opt (optional software )-> use for 3rd party application and add-ons software packages
+
+/proc (process information)-> virtual file system providing real time system and process information(eg. /proc/cpuinfo)
+
+/root -> (roots home directory) 
+
+/run (runtime table) stores volatile runtime data like PID files and logs (/run/systemd)
+
+/srv (service data ) use for storing data for system services like web servers (/srv/www)
+
+/sys (system information) a virtual file system providing system and kernel information
+
+/tmp (temporary files ) stores temporary files that are usually deleted on reboot
+
+/usr ( user binaries and utilities) content user application and libraries(/usr/bin)
+
+
+USER AND GROUP MANAGEMENT 
+
+USER -> INDIVIGUAL PERSON MAKE TO PERFORM PERTICULAR TASK
+root user -> administator level user (0)
+system users -> they help to run system smoothly (1to999)
+local user ->(1000 to 60,000+)
+sub user (1,00,000 to 60,01,00,000)
+ SYNTAX TO CREATE USER
+USERADD USERNAME  -> 1) USERNAME
+ 		     2)UID&GID
+		     3) HOME DIRECORTY 
+                     4) SKELATAN FILE (SHADOW FILE,HINDDEN FILE) ls -a
+		     5) MAIL FILE /VAR/SPOOL/MAIL -> INBOX 
+
+7 FIELD (USER ACTIONS COSTMIZE)-> tail -3 /etc/passwd
+useradd (option) (parameter) (username) ->FOR NEWUSER
+usermod (option) (parameter) (username) ->FOR EXISTING USER
+       ironman:x:1001:1001::/home/ironman:/bin/bash
+#  /ETC/PASSWD# 
+
+Its stores user related information 
+    7fields
+1. username -name indication 
+   TO MODIFY USERNAME SYNTAX (usermod -l new_username old_username)
+
+2. passwd place holder (link of encrypted password from shadow file)  
+
+3. uid -> userid -> user identification and manages user 
+   TO ADD UID SYNTAX (useradd -u add_gid username) 
+   TO MODIFY UID SYNTAX (usermod -u new_uid username)
+
+4. gid -> for primary group id.
+   TO ADD GID SYNTAX (useradd -g add_gid username) 
+   TO MODIFY GID SYNTAX (usermod -g new_gid username)
+
+5. comments -> additional info field
+   TO ADD COMMENT SYNTAX (useradd -c "add_comment_to_feed" username)
+   TO MODIFY COMMENT SYNTAX (usermod -c "modified_comment_to_feed" username)
+
+6. home directory -> absulute path for personal directory
+   TO ADD DIRECTORY SYNTAX (useradd -d "add_path_" username).
+   TO MODIFY DIRECTORY SYNTAX (usermod -d "modified_path" username).
+
+ 
+7. login shell -> define the user defalut login shell 
+   TO MODIFY LOGIN SHELL SYNTAX (usermod -s "modified_path" username).
+
+
+/etc/shadow -> file is a critical system file in lunix that stores encrypted passwd info,
+and other security related details for user accounts, it is only accessible by root user or 
+other users with elevated privileges. 
+
+NOTE -	you cannot directly edit the /etc/shadow file using useradd or usermod these commands modify users account
+settings ,which may indirectly affects /etc/shadow but do not allow direct editing of the file ..
+
+some changes can do with usermod will update /etc/shadow. 
+     
+   (usermod -L username )-> lock user
+   (passwd -l username )-> lock passwd
+indicate with ! in the start of encrypted password field .
+   (usermod -u username )-> unlocking the user
+   (passwd -u username )-> unlock passwd
+
+structure {username:$gdfgiodjgjg:18753:0:99999:4:::}
+
+9 fields 
+1)USERNAME -> the login of user 
+
+2)encrypted passward -> this passward store securely ,(if * ,! is present the account is locked 
+       passwd -d username -remove 
+3) last passward change -> the no of days since 1 jan 1970 when the password was last changed.
+          chage -d "no of day " username.
+4) minimum days -> the minimum no of days required before a password change is allowed  
+         chage	-m "no of day " username
+5) maximum days -> the maximum days no is the no which indicated before a password must be changed
+ 		chage	-M "no of day " username
+6) warning days -> the no of days before the expiration warn the user. 
+ 		chage -W "no of days " username
+7) inactive days -> its no of days after password expiration before the account disable (empty means not set)
+		chage -I "no of days " username (insure user update passward on time)
+8) account expiry date -> the number of days since 1 jan 1970 ,when the account will be disable (empty means not expiry)
+                 	chage -E <yyyy-mm-dd> username	
+
+9) reserved -> unused field for future use  
+
+
+GROUP -> USE TO COLLABRATE WITH MULTIPLES USER IN ONE DISTINATION (TASK ASSIGN,PERMITION)
+ /ETC/GROUP -> to configure group related field 
+4th field 	
+groupname:x:1009:MEMBERS (OPTIONAL) list of users who are part of group 
+ /ETC/GSHADOW -> to configure group password related field 
+
+
+create group with specific gid 
+    groupadd -g "gid" groupname 
+
+rename a group 
+groupadd -n new_gname old_gname
+
+add user to a group 
+usermod -aG groupname username
+-a ->append -> with keeping it in existing location  
+-G  -> secondary group .
+
+change the primary group 
+usermod -g group name username 
+
+remove user from a group 
+gpasswd -d username groupname
+gpasswd -M username groupname (-M to replace existing usrs with new users )
+
+view membership 
+ groups username
+
+check all group on the system 
+getent group 
+
+
+FILE PERMISSIONS AND OWNERSHIP 
+
+FILE PERIMISSIONS -in linux every file & directory has its own different permmisions and ownerships 
+                   with respect to users and groups will access that file and directories 
+
+	TO CHECK FILE PERMITION -> ls -l 
+
+
+ r -> READ -> file read -> 4
+ w -> write -> file edit -> 2
+ x -> exicute-> file run -> 1 (script or program files)
+   	SYNTAX (-rw-r--w-- 2 owner:group size date file name )
+files types indication 
+- regular file 
+d directory 
+l symbolic file 
+c character device (e.g terminal)
+b block device (hard disk)
+
+  rw- -> owner field
+  r-- -> group field
+  w-- -> other users field
+
+ chmod -> to set permission 
+ 1) chmod u,g,o(+,-,=)r,w,x filename 
+
+    u - main user (owner of file)
+    g - users work inside group 
+    o - other user (comes for perform perticular tasks)
+    + - add new permission in existing one 
+    - - remove permission in existing one 
+    = - add exact permission to current user 
+    r - 4 
+    w - 2
+    x - 1 
+    
+    numarical pattan
+   0 - ---
+   1 - --x
+   2 - -w-
+   3 - -wx
+   4 - r--
+   5 - r-x
+   6 - rw-
+   7 - rwx  
+
+task (-R) ? 
+     if we want make spcipt exicutable for everyone ?
+       (syntax)
+     what is soft link and hard link ?
+
+HARD LINK AND SOFT LINK
+
+ hard link syntax (ln orinal_file h_link_file )
+ soft link syntax (ln -s orinal_file s_link_file) 
+
+
+hard link -> a hard link is an exact copy of the original file,
+sharing the same inode number and data on the disk.
+
+key feature of hand disk 
+
+- both the orginal file and hardlink to be shared same data. 
+
+-deleting the original file does not affect the hard link 
+
+- hardlink cannot span across different file system or partition. 
+                                        (ext4,xfs,zfs)-> task -> explore
+- Hard link only work with regular file not directories.
+
+Soft link -> ( Symbolic link) -> Softlink is a shortcut or reference to the original file 
+it shares only the path of the original file.
+
+Keypoints
+- Does not share the same inode as the original file
+- If the original file is deleted the soft link become broken and show red tag
+-  softlink can be pointed to the file or directory.
+- Can span across the different file system and partition
+
+Practical user cases of hard link
+- When you want to create multiple names for the same file
+- File to remain functional even if the one copy is deleted
+- Useful for backup and version controlling.
+
+Practical user case for soft link
+- To create shortcut to the original file
+- Link file across the different file system
+- When you need to reference directories 
+
+onwership of file and directories 
+
+syntax (chown user:group file or directory name ) 
+
+command in Linux used to change the ownership of file and directories it allows us to assign a new owner
+ and or a group to a file or directories
+
+chown -R omi:team project_folder 
+if directly contain multiple files and subdirectories we can change ownership recursively 
+chgrp NEW_GRROUP_NAME  DIRECTORY OR FILENAME -> to perticularly change the group ownership
+
+					UMASK 
+UMASK-> a (user file creation mask) in Linux controls the default permission assigned to a new files and directory
+
+note -> when a new file or directory is created it does not get full permission 777 instead linux subtracts  
+the UMask value from the system default permission to determine final permission.
+
+1)Defalut file & directories permission 
+
+file -666
+directory -777    full permition 
+
+for security reason this is not given to new file by default
+
+UMASK WORKING -> define which permission should be removed from the default permissions
+it use octal number (0-7) to represent permission
+(FILE) 
+final permission =  default permission 	- 	UMASK permission  
+      600           =    666               -         O77
+ (DIRECTORY)
+final permission =  default permission 	- 	UMASK permission  
+        700         =   777             -         O77
+
+UMASK 	FILE 	DIRECTORY 	USE CASE 
+
+000	666	  777		NOT SECURE ,ALL USERS HAVE THE ACESSS
+
+022	644	  755		DEFALUT PERMISION FOR MOST OF LINUX SYSTEM 
+
+027 	640	  750		SECURE FOR PRIVATE GROUP ACESS 
+
+077 	600	  700 		MOST SECURE , FILE ONLY ACCESIBLE BY OWNER 
+
+NOTE -> you must carefully use UMASK to prevent unintend access to sensitive files
+ 
+steps to change default permision of umask for particular user 
+practice 
+ls -la -> all hidden files show 
+vim .bashrc -> to configure under .bashrc 
+come at end point and add the command (umask 027)
+:wq! -> save 
+source .bashrc	-> to inform system to implement change 
+
+
+SPECIAL PERMMISION 
+
+special user ID or identification -> allow to run file with the permission 
+                                     of its owner instead who execute it
+syntax
+(chmod u+s filename or path)
+
+special group ID or identification ->  Allow to run file or directory with the permission 
+                                      of its gruop instead who execute it
+
+steps 
+create 3 users and set password to them
+create a group and Add all these 3 users to this group
+command -> gpasswd -M user1,user2,user3 groupname
+create a directory in "/" (/direcory name)
+ chmod 750  /directory_name 
+chgrp new_groupname /dir
+ to check with ls -ltr permission is change or not
+
+switch back to root user 
+chmod g+s / directory name 
+
+task -> tail - 3 /etc/gpasswd what is output and why ?
+
+
+sticky bits 
+syntax(chmod o+t directory or file name)
+-> to remove delete access of file and directory 
+
+
+ACL -> acesss control list 
+
+setfacl -> to set or modify permission to 
+particular user under that file or directories
+SYNTAX
+{setfacl -m u:USER_NAME:permission(r,w,x) directory or file name}-> add usr
+
+{setfacl -x u:USER_NAME directory or file name}-> remove usr
+
+
+{setfacl -b  directory or file name}-> unmount acl 
+
+GROUP 
+{setfacl -m u:GROUP_NAME:permission(r,w,x) directory or file name}-> add group
+
+{setfacl -x u:GROUP_NAME directory or file name}-> remove group
+
+{setfacl -b  directory or file name}-> unmount acl 
+
+
+SUDO -> super usr do 
+configuration file -> /etc/sudoers 
+edit content -> visudo(good practice), vim /etc/sudoers 
+
+
+:set nu   (onwer):(group) 	(comands)	
+100 root     ALL:(ALL)    	   ALL	       file - dir -> systems localuser+systemfile
+    chaitali    ALL:(ALL)         NOPASSWD: /sbin/useradd, /sbin/userdel -> sudo useradd
+    root     ALL:(ALL)         NOPASSWD:COMMAND PATH, COMMAND2 PATH  
+TO ADD SAME PERMSSION TO MULTIPLE USERS    
+SYSTEM GROUP-> gpasswd -M followed by multiple user
+ wheel -> user1,user2,........infinity  getent group
+  %wheel     		ALL:(ALL)    	   ALL
+  %required group 	ALL:(ALL)    	   ALL
+%required group    	ALL:(ALL)         NOPASSWD:ALL
+ %required group        ALL:(ALL)         NOPASSWD:COMMAND PATH, COMMAND2 PATH 
+
+/sbin /bin ? -> which commnds acl perticular /file/dir r ls cat,
+
+FILTER AND SREACH UTILITY 
+
+	grep "search word" file(destination name) -> normal syntax
+        first command | grep "search word" file(destination name)-> 2 command same time exicution
+       grep -c "search word" file(destination name)-> count of search word
+        grep -n "search word" file(destination name)-> distanation of words the exact no line
+    	grep -E "search word|search word1" file(destination name) => to extend the words or to find extra word
+        grep -i "search word" file(destination name) -> inactive case sensitivity
+        grep -r "search word" file(destination name) => to exicute or access the content under dir 
+   SYNTAX 	find /  -name omi   
+        cut -C 1-5 file name => to show or or filter starting five words 
+        
+       cut -d ":" -f 2 /ect/passwd
+       cut	    Command to extract specific sections of text.
+	-d ':'	    Specifies : as the field separator (delimiter).
+	-f 1	    Extracts the first field (column).
+     /etc/passwd    The input file containing user account information.
+
+	"which" Finds the executable location of a command in the system’s 
+         syntax which passwd
+         output /etc/passwd. 
+ 
+         "whereis" Locates binary, source, and manual files for a command.
+          syntax whereis ls 
+ 	  output ls: /bin/ls /usr/share/man/man1/ls.1.gz 
+
+ 	 "locate"  Quickly finds files by name using a pre-built database ->(updatedb).
+          syntax locate myfile.txt
+	  output /home/user/myfile.txt
+task
+grep ls,cd, path sudo() -> ss 9am  
+
+
+
+ ACHIVING AND COMPRESION         backup mentore
+   find / -user username -exec cp -aprvf '{}' /backup_mentore \;
+  dir ,file ,file1
+
+   a-> archive mode  preserve (permission,binaryes, file system ,ownership)    
+   p-> preserve mode
+   -exec -> exicute task 
+   -user username related changes 
+    cp->copy 
+
+task -> find / -user username -print0 | xargs -0 cp -aprvf -t /desitanation folder or file
+mkdir backup mentore
+
+
+
+			ARCHIVE       			  |            COMPRESION 
+
+1) group multiple files into single files			1) reduce file size by encoding data more efficiently
+2) STAY the same size						2) decrease due to data compression
+3) preserve original folder,structure file,permission           3) may not retain file structure  		
+    and metadata 	
+4) command tar 							4) command gzip,bzip,jzip
+5) syntax tar -cvf file.tar  file_location   			5) syntax       tar -czvf file.tar.gz /source data_file_location
+										tar -xzvf file.tar.gz 
+                                                                  	        tar -cjvf file.tar.bz2 /source data_file_location
+										tar -xjvf file.tar.bz2 
+								   	        tar -cJvf file.tar.xz /source data_file_location
+ 			
+							tar -xJvf file.tar.xz 
+
+
+
+
+
+JOB SHEDULING 
+it's a feature that allows user to submit a command or a program
+ for execution at the specified time in future in Linux we have a few method to schedule a job
+at (for non periodic task )
+cron & anacron(periodic task)
+TOOLS -> at,cron ,anacron
+SYNTAX 
+at "HH:MM" 24 hrs ""
+>mkdir dir
+>CTEL D
+>(EOT)
+
+
+atq -> to show job related info 
+task -> using which command do i delate the job !
+  (SS)  8:00pm
+
+
+
+crontab -> to shedule periodical task in perticular time>>
+ it's a configuration file used by Cron deamon in Linux to schedule a task
+ to run at a specific time or a interval cron jobs automates A repetitive task such as 
+backups,updates monitoring and the script execution.
+
+
+user case ->
+backup files 
+auto -log delate 
+clear temp file 
+mysql database update 
+moniter disk usages
+
+ path -> /etc/crontab.-> servers -> 24/7 on  
+crontab -l list if aany crontab is present 
+crontab -r "all crontab will removed "
+crontab -e "configuration file of cron"
+
+
+<min>  <hr>   <day of month><month> <week days>
+ (0-59)(0-23)    (1-31)      (1-12)  (sun-sat)(0,7->sunday 1-> mon 6-> sat)
+ 
+
+
+annacron _> usees for the laptops or desktops machines and it use for the machines who get swith off after perticular time 
+
+
+STORAGE MAANGEMENT 
+ PARTITION & FILESYSTEM 
+IDE -> INTEGRATED  DRIVE ELECTRONIC (to attach optical drives ) 
+SATA -> SERIAL ADVANCED TECNOLOGY ATTACHMENT (to attach hard disks and optical drive)
+
+TASK -> EXPLORE DOC PARTITION TABLE ,SGI AND SUN PARTITION TABLE 
+
+FDISK -> PRE-INSTALL PARTITION UTILIES 
+   MBR PROTOCOL -> MASTER BOOT RECORD (4 PARTITION )DEFAULT 
+
+fdisk /dev/sd (partiton )
+to create new partion -> n
+to delete existing partion -> d
+to save new partion -> w
+
+  GPT -> GUID PARTITIONING TABLE (128 PARTITION) 
+
+lvm -logical volume management 
+
+[Disk] 
+    └── /dev/sdb
+         └── pvcreate /dev/sdb
+             └── [Physical Volume (PV)]
+                   └── vgcreate my_vg /dev/sdb
+                       └── [Volume Group (VG): my_vg]
+                             └── lvcreate -L 10G -n my_lv my_vg
+                                 └── [Logical Volume (LV): my_lv]
+                                       └── mkfs.ext4 /dev/my_vg/my_lv
+                                           └── mount /dev/my_vg/my_lv /mnt/my_lvm
+                                               └── [Use LVM as regular storage]
+
+
+
+hard disk (/dev/sdb )
+
+physical volume (/dev) creation->pvcreate  to display -> pvdisplay
+
+volume group (/dev/vg) creation->vgcreate (groupname) to display -> vgdisplay
+
+lvm (/dev/vg/lvm) creation->lvcreate -L (size) -n (lvm name) (vggruop) to display -> lvdisplay
+
+to create file system 
+mkfs.(ext4,ext3,xfs,zfs) path to lvm 
+to check _>  blkid 
+mount lvm path  destination directory 
+
+umount _> unmount
+ 
+
+
+PACKAGE MAANAGEMENT-> LINUX (DATA BROWSE -> INSTALL,UPDATE,CONFIGURE)
+package management is a process of installing ,updating, configuring and removing 
+the software packages on an operating system its ensure that software dependencies
+ are handled automatically making the software management easier.
+
+RED HAT FAMILY-> CENTOS ,FEDORA,MINTLINUX ,RHEL 
+low level tool..for installing ,removes list uninstalll and install package
+rpm (redhat package manager) - u have to download dependancies manually 
+high level tool >>instalation updates and dependancies 
+yum (yellowdog upadator modified)->   download dependancies automatily
+
+DEBAIN FAMILY->UTANTU, KALI LINUX AND MANY MORE ...
+low level tool..for installing ,removes list uninstalll and install package
+dpkg(debiean package manager)
+high level tool >>instalation updates and dependancies 
+apt (addvance package tool )
+DOWNLODING TOOLS 
+
+wget -> TO DOWNLOAD PACKAGE -> (data recive and upload)
+curl -O -> network informaation share (to transfer data )
+ 
+Basic RPM Commands
+
+Command	Description
+rpm -ivh <package.rpm>	Installs a new package
+rpm -Uvh <package.rpm>	Upgrades a package (or installs if not present)
+rpm -Fvh <package.rpm>	Freshens a package (upgrades only if already installed)
+rpm -evh <package>	Erases (uninstalls) a package by name
+                        Use .rpm file for install/upgrade, but only the package name for erase (rpm -e).
+
+ Querying Packages
+
+rpm -q <package>	Checks if a package is installed
+rpm -qa	                Lists all downloaded packages
+rpm -qi <package>	Shows detailed info about an installed package
+rpm -ql <package>	Lists all files installed by a package
+rpm -qf <file>	        Finds which package owns a specific file
+rpm -qp <package.rpm>	Queries an uninstalled .rpm file (use -p)
+
+ Verification & Validation
+
+rpm -V <package>	        Verifies a package (checks integrity)
+rpm --checksig <package.rpm>	Verifies GPG signature of a package
+
+
+
+yum 
+Besic commands 
+yum search <package>	Searches for a package by name or description
+yum info <package>	Shows detailed info about a package
+yum list	        Lists all available and installed packages
+yum list installed	Lists all installed packages
+yum list available	Lists all available packages
+yum list updates	Lists packages with updates available
+
+Install / Remove Packages
+yum install <package>	Installs a package
+yum remove <package>	Removes a package and its dependencies
+yum reinstall <package>	Reinstalls an existing package
+yum downgrade <package>	Downgrades a package to a previous version
+
+Update System
+yum update	        Updates all packages to the latest version
+yum update <package>	Updates a specific package
+yum upgrade 	        Similar to update, but may remove obsolete packages
+ 
+Manage Repositories
+yum repolist	Lists all enabled repositories
+yum repolist all	Lists all repositories (enabled and disabled)
+yum-config-manager --add-repo <repo_url>	Adds a new repository
+
+Clean & History
+yum clean all	Clears all cached files (good for freeing space)
+yum history	Shows the history of package transactions
+yum history undo <id>	Undo a transaction (based on history ID)
+
+note -> If you don’t have some of the tools above:
+
+NETWORKING 
+
+SWITCHES -> switches are the devices used to connect multiple devices within the same network
+
+ROUTER-> router are the device used to connect with two or multiple networks together
+ and initiate communication between them
+
+TYPE OF NETWORK 
+1) SAN -> STORAGE AREA NETWORK (DATA CENTERS)
+2) WAN -> WIDE AREA NETWORK (CONTRY TO CONTRY)
+3) MAN -> METRO PPOLUTANT NETWORK (KM)
+4) LAN -> LOCAL AREA NETWORK (METER)
+
+IP ADDRESSES 
+
+
+
+cCIDR RANGE 
+
+ 0.0.0.0 /16 -> ALL FIELD STATIC
+0-255.0-255.0-255.0-255 
+8 BIT -> 256 -> 0 TO 255
+32 - /VALUE 16  -> 65356 IPS               IP --> 21.225.0.0 
+ =16(DYNAMIC FIELD)                MONIS 0.0.1.0   21.225.1.0
+				 ROHAN 0.0.2.0
+				 0.0.255.0
+                                 0.0.1.1 -? 255
+
+
+
+ NOTE -> when we hit any of websites on browser using force following process are happening in background
+1)DNS (DOMAIN NAME SYSTEM)-> DNS RESOLUTION -> used to check authentication of domain 
+2)TCP (TRANSFER CONTROL PROTOCOL)-> TO CHECK THE ACCEPTANCE MODE (HANDSHAKE)
+ NOTE -> this process are codes to action before data transfer 
+3) OSI MODEL (OPEN SYSTEM INTERCONNECTION MODEL)
+BINARY CONTAIN 7 LAYERS request data to server or website
+-> application layer-> hit the request using port and it helps to interact with source.
+-> PRESENTATION LAYER -> HELP TO ENCRPTION OF DATA 
+-> SESSION LAYER -> create a session or environment for store cookies and caches in local device or machine
+-> TRANSPORT LAYER -> decide which protocol method will be used in data transmission
+            TCP-> (TRANSFER CONTROL PROTOCOL)-> to send data in order manner without any security leak
+	    UDP-> (USER DATAGRAM PROTOCOL)-> to send data in current manner with loss of data
+-> NETWORK LAYER -> CREATE A DATA IN PACKET TO FIND SHORTESET PATH 
+-> DATALINK LAYER Here it converts in frames not packets with in network distribution(SWITCHES OPRATES HERE)
+-> PHYSICAL LAYER -> CONTAIN OPTICAL FIBRE 
+
+task-> what is w/o and sockets in linux
+
+networking commands 
+1) ping ->ping used to check the network connectivity ,                  (internatcommucation manager)
+this is the command use to determine whether network is a reachable or not,it's sending ICM packets 
+to the host and wait for the ICM packet in response.
+
+2)netstat -> it shows active connection
+netstat is a command use display active network connection 
+including both income and outgoing it shows the local address, 
+port and PID of the process associated with each connection.
+
+3) ifconfig -> is command used to display information about all network interfaces currently configured on the system
+                 (self adapter info)
+
+4)loopback -> it will help to create a network within a server 
+self network check (netconnection). e.g local host 
+
+5)trace route-> O this command is yours to identify the intermediate router that packets
+ travel to the local host and the destination host.
+dns
+dn -> ip add (ipv4)
+A -> maps in dn in ip add (ipv4)
+AAAA -> dn in ipadd (ipv6)
+
+pointer records ip-dn
+
+nslookup -> it is a query that DNS to display the domain name and IP addresses 
+(name server lookup)
+nmtui -> it's a simple add user friendly command line to use in Linux 
+especially in Red Hat distribution like status REHLN product for managing networking connection
+
+FIREWALL -> a firewall is a security system it's maybe hardware or the software or it can be combination of both.
+that monitors and control incoming and outgoing network traffic based on predefined security rules 
+-> it's main purpose to create a barrier between a trusted internal network and untrusted external networks 
+   just like our Internet to prevent unauthorised access and cyber threats.
+
+firewalld service -> firewalld is a dynamic firewall management tool for the Linux system 
+commonly found in  Rehl ,fedora centos the almalinax it provide a deeper interface 
+and uses zones and services to manage firewall rules without restarting the entire firewall.
+task ->  what we used for debean family ?
+
+SYNTAX 
+# Start the firewalld service
+sudo systemctl start firewalld
+
+# Enable firewalld at boot
+sudo systemctl enable firewalld
+
+# Check status
+sudo systemctl status firewalld
+
+# View active zones
+sudo firewall-cmd --get-active-zones
+
+# Add a service (e.g., allow HTTP) permanently
+sudo firewall-cmd --permanent --add-service=http
+
+# Reload firewall to apply permanent changes
+sudo firewall-cmd --reload
+
+# Open a port (e.g., 8080/tcp) permanently
+sudo firewall-cmd --permanent --add-port=8080/tcp
+sudo firewall-cmd --reload
+
+
+
+
+step 1 
+add a addapter (target machine should be switch off)
+setting > networks > expert > hit addapter 2 (enable) > internal network > ok 
+machine start (cli)
+ifconfig -> 
+nmtui > edit connections > add > ip assign gateway > ok 
+ping ip -> connectivity check 
+systemctl status firewalld -> start >enable
+yum install httpd -> webpage handelling service 
+systemctl start httpd > systemctl enable httpd 
+echo "<h1>comment</h1>" > /var/www/html/index.html
+firewall-cmd --add-service=http --permenent
+firewall-cmd --reload
+firewall-cmd --list-all 
+curl ip add 
+firefox 
+output
+output 
+task successful 
+
+
+
+
+
+httpd service-> httpd service refer to a Apache HTTP server  
+one of the most widely used web server in world it is reponsible for serving the web pages 
+over the HTTP and httpd protocol linux system specially the Red Hat based distributions 
+the Apache web server runs at the HTTPD service
+
+IP FOREWADING /PORT FORWARDING 
+
+PROXY ->A proxy is a server that acts as a middleman between your computer and the internet, 
+helping to hide your identity, improve security, or access blocked content.
+
+IP Forwarding (Internet Protocol Forwarding):
+It allows data to pass from one network to another using a device like a router.
+ Used to connect different networks together.
+ Port Forwarding:
+It sends data coming to a specific port on your router to a specific device inside your network.
+ Used to access internal services (like a web server or game server) from the internet.
+
+
+SSH (Secure Shell) is a network protocol used to securely access and manage remote computers over an unsecured network.
+
+It’s mainly used by system administrators, developers, and engineers to remotely log into servers, transfer files, and execute commands securely.
+ Why is SSH Used?
+Purpose	Explanation
+Remote Login	Connect to another computer/server (e.g., Linux server on AWS) from anywhere.
+Secure Communication	Data is encrypted, so even if someone intercepts it, they can’t read it.
+File Transfer	Securely send files using SCP or SFTP.
+Tunneling	
+Forward ports securely (e.g., accessing a remote database or app).
+ How SSH Works (Step-by-Step):
+You (Client) want to connect to a remote computer.
+
+You use an SSH command with:
+
+
+ssh username@remote_IP_address
+The SSH server on the remote machine receives the request.
+
+It authenticates you using:
+
+A password, or
+
+A public/private key pair.
+
+Once verified, a secure encrypted channel is established.
+
+You can now run commands on the remote machine as if you were sitting in front of it.
+ SSH Key Authentication (Preferred Method)
+Instead of passwords, you can use key-based authentication:
+
+Key	Description
+Private Key	Kept on your local machine (never shared).
+Public Key	Stored on the remote server in a special file (~/.ssh/authorized_keys).
+SSH uses these keys to encrypt and decrypt the session.
+
+Common SSH Commands
+Command	Purpose
+ssh user@ip	Connect to a remote server
+scp file.txt user@ip:/path/	Copy a file to the remote server
+sftp user@ip	Start an interactive file transfer session
+ssh -i key.pem user@ip	Connect using a private key
+ssh -L 8080:localhost:80 user@ip	Forward local port 8080 to remote port 80
+Security Benefits
+Encryption: Prevents eavesdropping.
+
+Authentication: Ensures only authorized users can connect.
+
+Integrity: Protects against data tampering during transmission.
+
+ TASK -> HOW FIREWALL WORKS ?
+HTTPD SERVICE IN LINUX ?
+ 
+
+SSH -> SECURE SHELL   (WROKING TERMINAL)
+
+1)PASSWARD AUTHENTIFICATION
+
+STEP -> 2 MACHINES  CLIENT SERVER
+
+WE HAVE TO INSTALL OPENSSH IN BOTH MACHINE
+
+ONE MECHINE ROOT CONNECTION WITH OTHER MACHINE USER(SERVER)
+SYNTAX -> SSH MACHINE USERNAME (SERVER)@ IP OF SERVER 
+PASSWD SERVER 
+
+TRY TO CREATE A FILE AND CHECK IT IN SERVER MACHINE 
+EXIT (CTRL D)
+
+
+2)KEY AUTHENTICATION 
+
+STEP -> 2 MACHINES  CLIENT SERVER
+
+WE HAVE TO INSTALL OPENSSH IN BOTH MACHINE
+steps (cli)
+ssh-keygen -> to create key 
+press enter 3  
+
+ls -a -> to see .ssh
+cd .ssh
+ls
+id_rsa id_rsa.pub 
+
+touch authorized_key -rw-r--r-- (644)
+cat id_rsa > authorized_key
+-rw------ chmod 600 authorized_key
+scp id_rsa server@ip:sever
+
+in server 
+ssh -i id_rsa client@ip
+
+sucessfull connection _>
+
+
+task 6 ss sunday night (8pm)
+
+why and how we use scp -i with syntax ?  
+
+
+PROCESS MANAGEMENT ->
+
+LOAD AVARAGE ->Load average is a measure of how busy your system’s CPU(s) are.
+It tells you how many processes are waiting to run (in the run queue) or currently executing over a given period of time.
+COMMANDS TO ACCESS IT -> 
+uptime
+top
+cat /proc/loadavg
+
+SLEEPING TASK -> A sleeping task is a process that is not currently using the CPU because it's waiting for something to happen
+ — like: Data from disk
+Input from a user
+A network response
+Another process to finish something. 
+
+%CPU(S)-> (or %CPU in many tools) shows the percentage of the CPU that a process is using at a given moment. 
+It represents how much CPU time a process has consumed relative to the total available 
+CPU time during the time period you’re monitoring.
+
+ZOMBIE PROCESS-> A zombie process (also known as a defunct process) is a process in a Unix-like operating system that has
+ completed execution but still has an entry in the process table. 
+
+
+COMMANDS 
+jobs -> (shows current activities of jobs)
+Jobs are processes started by a shell that are either running in the foreground or background. 
+You can view, control, and manipulate these jobs with various shell commands.
+
+BACKGROUND(bg) (process running in background).
+bg command resumes a stopped job and runs it in the background. 
+This is useful if you’ve paused a job and now want it to continue in the background.
+   syntax -> bg %(job id)
+       
+FOREGROUND(fg) (show background running process in foreground).
+The fg command brings a background job to the foreground so you can interact with it directly.
+syntax -> fg%(job id)
+
+kill
+The kill command can send signals to jobs to stop them (terminate), including background and foreground jobs.
+
+ps command -> running process show or configure perpose
+syntax ps -ef | more -> to show all running process in below format ...
+UID	User ID – Who owns the process (e.g., root, parth)
+PID	Process ID – Unique ID for the process
+PPID	Parent Process ID – ID of the process that launched this one
+C	CPU usage – % of CPU the process is using (not always accurate in real time)
+STIME	Start Time – When the process started
+TTY	Terminal associated with the process (or ? if none)
+TIME	Total CPU time used by the process (sum of user + system time)
+CMD	Command – The actual command that launched the process
+
+ps aux -> use to memory and cpu usase 
+task aux -> meaning ?
+USER	Owner of the process
+PID	Process ID
+%CPU	Percent of CPU usage
+%MEM	Percent of physical memory usage
+VSZ	Virtual memory size (in KB)
+RSS	Resident Set Size – actual physical memory used (in KB)
+TTY	Terminal associated (if any)
+STAT	Process status (R, S, Z, T etc.)
+START	Time or date the process started
+TIME	Cumulative CPU time the process has used
+COMMAND	The full command with arguments
+
+STAT -> STATUS OF PERTICULAR PROCESSS
+R	Running
+S	Sleeping (idle)
+D	Uninterruptible sleep (usually I/O)
+T	Stopped
+Z	Zombie (process ended but not cleaned by parent)
++	In foreground process group
+l	Multi-threaded
+s	Session leader
+<	High priority
+N	Low priority
+
+syntax ps -u <username> -> to show process related perticular user(Monitor only your processes.)
+syntax ps -ef --forest ->to know the hierarchy of parent and child processes as a tree.
+Find processes using grep:
+ps -ef | grep service name ->Find if service is running.
+ps fax -> to show info in manared form 
+ps lax -> to check niceness no.of bg & gf commands (_NI_)->NICENESS 
+
+niceness 
+ niceness is a value that determines the priority of a process. It ranges from:
+
+-20 → Highest priority (least nice)
+
+0 → Default priority
+
++19 → Lowest priority (most nice)
+a lower nice value = higher priority, and vice versa.
+syntax 
+nice -n [niceness] [command] -> TO GIVE NICENESS FOR COMMAND IN FUTURE USE
+renice (niceness no) (pid) -> to renice bg process 
+
+BOOT PROCESS 
+1) REBOOT (RESTART) 
+2)BOOT (START) POWER ON 
+INITIATION SYSTEM ->  =ALSO CALLED INIT SYSTEM 
+WORK FLOW -> FOLLOWED UNITS -> SIMPLE.TXT FILES WHICH DESCRIBE NESSASARY LOGIC.
+           |
+	COMUNICATION   
+	   |
+      BOOT LOADER GRUB ()
+           |
+           |
+       1ST PROCESS HLEPS TO LAUNCH "OS" IN RAM OR BASH 
+
+
+BOOTUP SYSTEM -> when we boot up a system certain application 
+started automatically the application run in a certain order in if one app crash there
+ will be auto restart process and this can be done continuously with the help of INIT system
+
